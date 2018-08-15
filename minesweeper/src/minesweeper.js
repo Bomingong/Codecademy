@@ -1,3 +1,6 @@
+// Minesweeper part 3 - dynamically generate game boards
+// Using your knowledge of iterators and functions,
+// you will be able to dynamically generate a player board.
 const generatePlayerBoard = (numberOfRows, numberOfColumns) => {
   let board = [];
   // for loop iterating through numberOfRows
