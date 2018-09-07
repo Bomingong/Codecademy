@@ -14,6 +14,6 @@ Build Front-End Web Applications From Scratch:
   - contains the latest version of the ravenous project
   - Ravenous: a Yelp-like restaurant-searching web appliaction using the React.js framework that utilizes live data from Yelp's public API
     - Web app should allow users to:
-      - search for restaurants
-      - view a list of restaurants returned by the Yelp API
-      - sort through restaurants using a filter (best match, highest ratings, most reviews)
+      - search for restaurants/businesses
+      - view a list of restaurants/businesses returned by the Yelp API
+      - sort through restaurants/businesses using a filter (best match, highest ratings, most reviews)
