@@ -1,5 +1,4 @@
 # Projects
-Projects
 
 Build Front-End Web Applications From Scratch:
 - minesweeper directory
