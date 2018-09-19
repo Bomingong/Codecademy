@@ -4,12 +4,8 @@ import { TrackContainer } from '../TrackContainer/TrackContainer'
 
 // TrackList container component
 export class TrackListContainer extends React.Component {
-  constructor(props) {
-    super(props);
-  }
-
   render() {
-    // maps an array of TrackContainer Components from Playlist and SearchResults
+    // maps an array of TrackContainer Components from Playlist and SearchResults tracks
     const tracks = this.props.tracks.map(track => {
       return <TrackContainer key={track.id} onRemove={this.props.onRemove} onAdd={this.props.onAdd} isRemoval={this.props.isRemoval} track={track} />
     });

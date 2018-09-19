@@ -18,6 +18,6 @@ export class PlaylistContainer extends React.Component {
   render() {
     return <Playlist onSave={this.props.onSave} onChange={this.handleNameChange}
     onRemove={this.props.onRemove} playlistName={this.props.playlistName}
-    playlistTracks={this.props.playlistTracks} />;
+    playlistTracks={this.props.playlistTracks} />
   }
 }

@@ -12,13 +12,8 @@ class App extends Component {
     super(props);
     this.state = {
       // receives query results from Spotify API
-      searchResults: [{
-        name: 'youre undefined',
-        artist: 'stop it',
-        album: 'seriously',
-        id: 'id2'
-      }],
-      playlistName: 'My Playlist',
+      searchResults: [],
+      playlistName: 'New Playlist',
       // array of track objects
       playlistTracks: [{
         name: 'Anywhere',
@@ -40,7 +35,9 @@ class App extends Component {
     if(this.state.playlistTracks.find(savedTrack => savedTrack.id === track.id)) {
       return;
     } else {
-      this.state.playlistTracks.push(track);
+      let newPlaylistTracks = this.state.playlistTracks.slice();
+      newPlaylistTracks.push(track);
+      this.setState({playlistTracks: newPlaylistTracks});
     }
   }
 
@@ -60,7 +57,7 @@ class App extends Component {
 
   // saves playlist tracks to an array
   savePlaylist() {
-    let trackURI = this.state.playlistTracks.URI;
+    let trackURI = this.state.playlistTracks.uri;
     Spotify.savePlaylist(this.state.playlistName, trackURI);
     this.setState({playlistName: 'New Playlist', playlistTracks: []});
   }
@@ -70,6 +67,7 @@ class App extends Component {
     Spotify.search(term).then(track => {
       this.setState({searchResults: track});
     });
+    console.log(this.state.searchResults);
   }
 
   render() {
