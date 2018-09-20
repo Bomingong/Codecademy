@@ -1,5 +1,5 @@
 const client_id = '29c1af92451d4b06b189a301422f7e69';
-const redirect_uri = 'http://localhost:3000/';
+const redirect_uri = 'https://jammmingwithchrisong.surge.sh';
 
 // Spotify access token
 let accesstoken;
@@ -37,7 +37,7 @@ const Spotify = {
   search: function(term) {
     const accessToken = Spotify.getAccessToken();
     // information to reach Spotify API
-    const endpoint = `${queryURL}/search?type=track&q=${term}&limit=50`;
+    const endpoint = `${queryURL}/search?type=album,artist,track&q=${term}&limit=50`;
     //console.log(accessToken);
 
     // create spotify request, return response as a list of tracks in JSON
