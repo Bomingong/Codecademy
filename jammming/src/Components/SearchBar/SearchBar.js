@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchBar.css';
 
-// SearchBar Presentational Component
+// SearchBar Component
 export class SearchBar extends React.Component {
   constructor(props) {
     super(props);
@@ -21,17 +21,19 @@ export class SearchBar extends React.Component {
     this.props.onSearch(term);
   }
 
-  // sets the state of the searchbar's term to the event target's value
+  // sets the state of searchTerm to the search bar input field
   handleTermChange(e) {
     this.setState({searchTerm: e.target.value});
     //console.log(`Search Bar input: ${this.state.searchTerm}`);
   }
 
+  // passes the current searchTerm to .search()
   handleSearch() {
     this.search(this.state.searchTerm);
   }
 
-  returnSearch(event) {
+  // passes the current searchTerm to .search() when carriage return is pushed
+  handleReturnSearch(event) {
     if(event.key === 'Enter') {
       this.search(this.state.searchTerm);
     }
@@ -40,7 +42,7 @@ export class SearchBar extends React.Component {
   render() {
     return (
       <div className="SearchBar">
-        <input onChange={this.handleTermChange} onKeyPress={this.returnSearch} placeholder="Enter A Song, Album, or Artist" />
+        <input onChange={this.handleTermChange} onKeyPress={this.handleReturnSearch} placeholder="Enter A Song, Album, or Artist" />
         <a onClick={this.handleSearch}>SEARCH</a>
       </div>
     );

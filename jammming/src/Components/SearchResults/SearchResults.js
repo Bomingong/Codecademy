@@ -3,7 +3,7 @@ import './SearchResults.css';
 
 import { TrackList } from '../TrackList/TrackList';
 
-// SearchResults Presentational component
+// SearchResults Component
 export class SearchResults extends React.Component {
   render() {
     return (

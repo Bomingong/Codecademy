@@ -3,13 +3,14 @@ import './Playlist.css';
 
 import { TrackList } from '../TrackList/TrackList';
 
-// Playlist Presentational Component
+// Playlist Component
 export class Playlist extends React.Component {
   constructor(props) {
     super(props);
     this.handleNameChange = this.handleNameChange.bind(this);
   }
 
+  // passes App.updatePlaylistName the current value of the playlist name input field
   handleNameChange(e) {
     const name = e.target.value;
     this.props.onNameChange(name);
