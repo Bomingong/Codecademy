@@ -1,8 +1,8 @@
 import React from 'react';
-import { Track } from './Track/Track';
+import './Track.css';
 
-// Track container component
-export class TrackContainer extends React.Component {
+// Track Component
+export class Track extends React.Component {
   constructor(props) {
     super(props);
     // bind the current instance of this to .addTrack() and .removeTrack()
@@ -13,12 +13,10 @@ export class TrackContainer extends React.Component {
 
   // Determines whether anchor tag displays a remove or add symbol based on the bool isRemoval
   renderAction(){
-    const remove = '-';
-    const add = '+';
     if(this.props.isRemoval) {
-      return <a className="Track-action" id={this.props.key} onClick={this.removeTrack}>{remove}</a>;
+      return (<a className="Track-action" id={this.props.track.key} onClick={this.removeTrack}>-</a>);
     } else {
-      return <a className="Track-action" id={this.props.key} onClick={this.addTrack}>{add}</a>;
+      return (<a className="Track-action" id={this.props.track.key} onClick={this.addTrack}>+</a>);
     }
   }
 
@@ -31,8 +29,15 @@ export class TrackContainer extends React.Component {
   removeTrack() {
     this.props.onRemove(this.props.track);
   }
-
   render() {
-    return <Track track={this.props.track} renderAction={this.renderAction} />;
+    return (
+      <div className="Track" >
+        <div className="Track-information">
+          <h3>{this.props.track.name}</h3>
+          <p>{this.props.track.artist} | {this.props.track.album}</p>
+        </div>
+          {this.renderAction()}
+      </div>
+    );
   }
 }

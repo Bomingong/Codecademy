@@ -3,7 +3,6 @@ const redirect_uri = 'http://localhost:3000/';
 
 // Spotify access token
 let accesstoken;
-let accessToken;
 // API URL
 const queryURL = 'https://api.spotify.com/v1';
 
@@ -12,6 +11,7 @@ const Spotify = {
   getAccessToken: function() {
     const regExpAccessToken = /access_token=([^&]*)/;
     const regExpExpiration = /expires_in=([^&]*)/;
+
     // first condition --> access token is already set
     if(accesstoken) {
       return accesstoken;
@@ -31,13 +31,15 @@ const Spotify = {
       const scope = '&scope=playlist-modify-public user-read-private';
         window.location = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`;
     }
+
   },
 
   search: function(term) {
     const accessToken = Spotify.getAccessToken();
     // information to reach Spotify API
-    const endpoint = `${queryURL}/search?type=track&q=${term}`;
+    const endpoint = `${queryURL}/search?type=track&q=${term}&limit=50`;
     //console.log(accessToken);
+
     // create spotify request, return response as a list of tracks in JSON
     return fetch(endpoint, {
       method: 'GET',
@@ -59,48 +61,60 @@ const Spotify = {
         return [];
       }
     });
+
   },
 
   savePlaylist: function(playlistName, trackURI) {
+    const accessToken = Spotify.getAccessToken();
+
     if(!playlistName && !trackURI) {
       return;
     } else {
       let usrId;
       let playlistId;
 
+      const usrEndpoint = `${queryURL}/me`;
+
       // GET user_id
-      fetch(`${queryURL}/me`, {
+      return fetch(usrEndpoint, {
         method: 'GET',
         headers: {Authorization: `Bearer ${accessToken}`}
       }).then(response => {
         return response.json();
       }).then(jsonResponse => {
         usrId = jsonResponse.id;
-      }).then(
-      // POST a new playlist and receive playlist ID from request
-      fetch(`${queryURL}/users/${usrId}/playlists`, {
-        method: 'POST',
-        headers: {Authorization: `Bearer ${accessToken}`},
-        body: JSON.stringify({name: playlistName})
-      }).then(response => {
-        response.json();
-      }).then(jsonResponse => {
-        playlistId = jsonResponse.id;
-      })).then(
-      // POST trackURIs to new playlist
-      fetch(`${queryURL}/users/${usrId}/playlists/${playlistId}/tracks`, {
-        method: 'POST',
-        headers: {Authorization: `Bearer ${accessToken}`},
-        body: JSON.stringify({uris: trackURI})
-      }).then(response => {
-        response.json();
-      }).then(jsonResponse => {
-        playlistId = jsonResponse.id;
-      }));
+        const playlstEndpoint = `${queryURL}/users/${usrId}/playlists`;
+
+        // POST a new playlist and receive playlist ID from request
+        return fetch(playlstEndpoint, {
+          method: 'POST',
+          headers: {Authorization: `Bearer ${accessToken}`},
+          body: JSON.stringify({name: playlistName})
+        }).then(response => {
+          return response.json();
+        }).then(jsonResponse => {
+          playlistId = jsonResponse.id;
+          const trackEndpoint = `${queryURL}/users/${usrId}/playlists/${playlistId}/tracks`;
+
+          // POST trackURIs to new playlist
+          return fetch(trackEndpoint, {
+            method: 'POST',
+            headers: {Authorization: `Bearer ${accessToken}`},
+            body: JSON.stringify({uris: trackURI})
+          }).then(response => {
+            return response.json();
+          }).then(jsonResponse => {
+            playlistId = jsonResponse.id;
+          });
+
+        });
+
+      });
+
     }
+
   }
+
 };
-
-
 
 export default Spotify;

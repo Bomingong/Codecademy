@@ -1,7 +1,7 @@
 import React from 'react';
 import './SearchResults.css';
 
-import { TrackListContainer } from '../../TrackListContainer/TrackListContainer';
+import { TrackList } from '../TrackList/TrackList';
 
 // SearchResults Presentational component
 export class SearchResults extends React.Component {
@@ -9,7 +9,7 @@ export class SearchResults extends React.Component {
     return (
       <div className="SearchResults">
         <h2>Results</h2>
-        <TrackListContainer onAdd={this.props.onAdd} tracks={this.props.queriedTracks} isRemoval={false} />
+        <TrackList onAdd={this.props.onAdd} tracks={this.props.searchResults} isRemoval={false} />
       </div>
     );
   }
