@@ -17,7 +17,7 @@ class App extends Component {
       // array of track objects
       playlistTracks: []
     }
-    // bind methods to current instance of this
+
     this.addTrack = this.addTrack.bind(this);
     this.removeTrack = this.removeTrack.bind(this);
     this.updatePlaylistName = this.updatePlaylistName.bind(this);
@@ -54,7 +54,7 @@ class App extends Component {
     this.setState({playlistName: 'New Playlist', playlistTracks: []});
   }
 
-  // update the state of searchResults with with the value resolved from Yelp.search()'s promise
+  // update the state of searchResults with the value resolved from Yelp.search()'s promise
   search(term) {
     Spotify.search(term).then(track => {
       this.setState({searchResults: track});
