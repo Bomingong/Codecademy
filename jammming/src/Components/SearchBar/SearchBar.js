@@ -5,11 +5,11 @@ import './SearchBar.css';
 export class SearchBar extends React.Component {
   constructor(props) {
     super(props);
-    this.state = {searchTerm: ''}
+    this.state = {searchTerm: ''};
     this.search = this.search.bind(this);
     this.handleTermChange = this.handleTermChange.bind(this);
     this.handleSearch = this.handleSearch.bind(this);
-    this.handleReturnSearch - this.handleReturnSearch.bind(this);
+    this.handleReturnSearch = this.handleReturnSearch.bind(this);
   }
 
   // passes the current state of term to this.props.onSearch
@@ -18,8 +18,8 @@ export class SearchBar extends React.Component {
   }
 
   // sets the state of searchTerm to the search bar input field
-  handleTermChange(e) {
-    this.setState({searchTerm: e.target.value});
+  handleTermChange(event) {
+    this.setState({searchTerm: event.target.value});
   }
 
   // passes the current searchTerm to .search()

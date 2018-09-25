@@ -1,5 +1,6 @@
 const client_id = '29c1af92451d4b06b189a301422f7e69';
 const redirect_uri = 'https://jammmingwithchrisong.surge.sh';
+//const redirect_uri = 'http://localhost:3000/';
 
 // Spotify access token
 let accesstoken;
@@ -29,7 +30,7 @@ const Spotify = {
       // used else in case the first two conditions failed, therefore just have the user reauthenticate
     } else {
       const scope = '&scope=playlist-modify-public user-read-private';
-        window.location = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token&show_dialog=true`;
+        window.location = `https://accounts.spotify.com/authorize?client_id=${client_id}&redirect_uri=${redirect_uri}&scope=${scope}&response_type=token`;
     }
 
   },
@@ -102,6 +103,13 @@ const Spotify = {
             headers: {Authorization: `Bearer ${accessToken}`},
             body: JSON.stringify({uris: trackURI})
           }).then(response => {
+            if(response.status === 201) {
+              window.alert(`Your playlist: '${playlistName}' was created with the selected tracks!`);
+            } else if(response.status === 202) {
+              window.alert(`Attention:  Your request to create '${playlistName}' playlist was accepted, but not yet processed.`);
+            } else {
+              window.alert(`Error:  '${playlistName}' playlist was not saved.`);
+            }
             return response.json();
           }).then(jsonResponse => {
             playlistId = jsonResponse.id;
