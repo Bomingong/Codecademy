@@ -11,8 +11,8 @@ export class Playlist extends React.Component {
   }
 
   // passes App.updatePlaylistName the current value of the playlist name input field
-  handleNameChange(e) {
-    const name = e.target.value;
+  handleNameChange(event) {
+    const name = event.target.value;
     this.props.onNameChange(name);
 
   }

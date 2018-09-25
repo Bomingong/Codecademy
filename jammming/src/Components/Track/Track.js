@@ -11,7 +11,7 @@ export class Track extends React.Component {
   }
 
   // Determines whether anchor tag displays a remove or add symbol based on the bool isRemoval
-  renderAction(){
+  renderAction() {
     if(this.props.isRemoval) {
       return (<a className="Track-action" id={this.props.track.key} onClick={this.removeTrack}>-</a>);
     } else {
@@ -35,7 +35,7 @@ export class Track extends React.Component {
           <h3>{this.props.track.name}</h3>
           <p>{this.props.track.artist} | {this.props.track.album}</p>
         </div>
-          {this.renderAction}
+          {this.renderAction()}
       </div>
     );
   }

@@ -1,3 +1,24 @@
+﻿Jammming: a React app that allows users to log into their Spotify account, search for tracks, add/remove tracks in a new playlist, and then save the custom playlist to their Spotify account
+- Initial project functionalities:
+  - Search by song, albumn, or artist
+    - User can search for tracks by album, artist, or song name by typing the search terms into the search bar and clicking the SEARCH button or hitting carriage return
+  - Populate results list
+    - The app will display a list of tracks (up to 50) inside the Results container
+  - Add song to a custom playlist
+    - User can add a track to their custom playlist by clicking on the '+' sign to the right side of the track
+  - Remove Song from custom playlist
+    - User can remove a track from their custom playlist by clicking on the '-' sign to the right side of the track
+  - Change Playlist Title
+    - User can change the name of their custom playlist
+  - Save Playlist to Account
+    - Users can save their custom playlist to their Spotify account by clicking the SAVE TO SPOTIFY button
+- Additional features:
+  - User can execute a query from the search bar by hitting 'enter'
+  - A window alert notifies the user if the playlist and tracks were successfully saved to the user's account
+
+
+
+Default README:
 This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
 Below you will find some information on how to perform common tasks.<br>
